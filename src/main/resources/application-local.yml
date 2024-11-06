@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/team_E
-    username: root
-    password: 
+    username: ENC(${DB_USER})
+    password: ENC(${DB_PW})
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:

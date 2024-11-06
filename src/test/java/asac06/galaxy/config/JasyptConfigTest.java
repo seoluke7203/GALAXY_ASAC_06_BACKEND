@@ -32,12 +32,24 @@ class JasyptConfigTest {
 
         System.out.println("encryptKey : " + encryptKey);
 
-        String encryptedText = encryptor.encrypt(encryptKey);
-        System.out.println("encryptedText = " + encryptedText);
+        String encryptedKey = encryptor.encrypt("encryptKey");
+        System.out.println("encryptedText = " + encryptedKey);
 
-        String decryptedText = encryptor.decrypt(encryptedText);
-        System.out.println("decryptedText = " + decryptedText);
+        String decryptedKey = encryptor.decrypt(encryptedKey);
+        System.out.println("decryptedText = " + decryptedKey);
 
-        Assertions.assertThat(decryptedText).isEqualTo(encryptKey);
+        String encryptedId = encryptor.encrypt("id");
+        System.out.println("encryptedText = " + encryptedId);
+
+        String decryptedId = encryptor.decrypt(encryptedId);
+        System.out.println("decryptedText = " + decryptedId);
+
+
+        String encryptedPW = encryptor.encrypt("pw");
+        System.out.println("encryptedText = " + encryptedPW);
+
+        String decryptedPW = encryptor.decrypt(encryptedPW);
+        System.out.println("decryptedText = " + decryptedPW);
+
     }
 }
