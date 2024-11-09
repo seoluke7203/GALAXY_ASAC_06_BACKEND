@@ -4,9 +4,11 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
 @Data
 public class ProductDto {
+
     @Data
     public static class MainPosterProductDto {
         private Long productId;

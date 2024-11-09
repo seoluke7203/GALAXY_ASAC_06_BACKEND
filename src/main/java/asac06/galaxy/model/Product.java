@@ -2,6 +2,8 @@ package asac06.galaxy.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +13,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Product {
     @Id @GeneratedValue
     @Column(name = "product_id")
