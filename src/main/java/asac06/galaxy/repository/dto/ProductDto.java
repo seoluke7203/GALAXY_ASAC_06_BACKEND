@@ -1,5 +1,6 @@
 package asac06.galaxy.repository.dto;
 
+import asac06.galaxy.model.ProductType;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -42,6 +43,33 @@ public class ProductDto {
             this.content = content;
             this.releaseDate = releaseDate;
             this.productSrc = productSrc;
+        }
+    }
+    @Data
+    public static class ProductDetailDto {
+        private String title;
+        private LocalDateTime releaseDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
+        private int runningTime;
+        private int price;
+        private String place;
+
+        private String posterSrc;
+        private String posterDetail;
+
+        public ProductDetailDto(String title, LocalDateTime releaseDate, LocalDate startDate,
+            LocalDate endDate, int runningTime, int price, String place, String posterSrc,
+            String posterDetail) {
+            this.title = title;
+            this.releaseDate = releaseDate;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.runningTime = runningTime;
+            this.price = price;
+            this.place = place;
+            this.posterSrc = posterSrc;
+            this.posterDetail = posterDetail;
         }
     }
 }
