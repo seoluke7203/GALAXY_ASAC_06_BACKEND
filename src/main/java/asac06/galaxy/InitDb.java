@@ -34,9 +34,9 @@ public class InitDb {
 
         @RequiredArgsConstructor
         public enum Genre {
-            MUSICAL(ProductGenre.MUSICAL,"src/assets/images/posters/jesuschristPoster.jpeg", "src/assets/images/postersDetail/jesusMainPic.jpg"),
-            CONCERT(ProductGenre.CONCERT,"src/assets/images/posters/stillJypPoster.gif", "src/assets/images/postersDetail/stillJypDetail.jpg"),
-            THEATER(ProductGenre.THEATER,"src/assets/images/posters/aladinPoster.png", "src/assets/images/postersDetail/performace1.jpg");
+            MUSICAL(ProductGenre.MUSICAL,"/src/assets/images/posters/jesuschristPoster.jpeg", "/src/assets/images/postersDetail/jesusMainPic.jpg"),
+            CONCERT(ProductGenre.CONCERT,"/src/assets/images/posters/stillJypPoster.gif", "/src/assets/images/postersDetail/stillJypDetail.jpg"),
+            THEATER(ProductGenre.THEATER,"/src/assets/images/posters/aladinPoster.png", "/src/assets/images/postersDetail/performace1.jpg");
 
             private final ProductGenre genre;
             private final String productSrc;
