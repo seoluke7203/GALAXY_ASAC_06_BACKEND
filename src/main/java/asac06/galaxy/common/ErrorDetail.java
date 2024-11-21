@@ -1,4 +1,4 @@
-package asac06.galaxy.advice;
+package asac06.galaxy.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ public class ErrorDetail {
 //    private String type;
     private final String desc;
 
-    public static ErrorDetail of(ErrorType type) {
+    public static ErrorDetail of(ErrorCode type) {
         return new ErrorDetail(type.getDesc());
     }
 }

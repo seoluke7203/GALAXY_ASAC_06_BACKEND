@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import lombok.NoArgsConstructor;
 
 @Data
@@ -30,21 +32,24 @@ public class ProductDto {
     }
 
     @Data
-    public static class SubProductDto {
+    public static class SubPosterProductDto {
         private Long productId;
         private String title;
         private String content;
-        private LocalDateTime releaseDate;
+        private String releaseDate;
         private String productSrc;
 
-        public SubProductDto(Long productId, String title, String content, LocalDateTime releaseDate, String productSrc) {
+        public SubPosterProductDto(Long productId, String title, String content, LocalDateTime releaseDate, String productSrc) {
             this.productId = productId;
             this.title = title;
             this.content = content;
-            this.releaseDate = releaseDate;
+            this.releaseDate = releaseDate.format(dateTimeFormatter);
             this.productSrc = productSrc;
         }
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM.dd HH:mm (E)");
     }
+
     @Data
     public static class ProductDetailDto {
         private String title;

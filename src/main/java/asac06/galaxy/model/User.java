@@ -1,12 +1,8 @@
 package asac06.galaxy.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
@@ -20,9 +16,17 @@ public class User {
     @Column(name = "user_id")
     Long id; //placeholder
     String name;
-    String login_id;
+    @Column(nullable = false, unique = true)
+    String username;
     String password;
 
     @Column(nullable = false, unique = true)
     String email;
+
+//    @Enumerated(EnumType.STRING)
+    UserRole role = UserRole.USER;
+
+    public enum UserRole {
+        ADMIN, USER;
+    }
 }

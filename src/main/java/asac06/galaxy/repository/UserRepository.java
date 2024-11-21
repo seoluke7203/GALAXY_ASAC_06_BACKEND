@@ -3,7 +3,9 @@ package asac06.galaxy.repository;
 import asac06.galaxy.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
 
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
     User findByEmail(String email);
 }

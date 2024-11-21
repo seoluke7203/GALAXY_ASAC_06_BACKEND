@@ -1,10 +1,9 @@
-package asac06.galaxy.advice;
+package asac06.galaxy.common;
 
 import org.springframework.http.HttpStatus;
 
-public interface ErrorType {
+public interface ErrorCode {
     String name();
     HttpStatus getStatus();
-    String getType();
     String getDesc();
 }
