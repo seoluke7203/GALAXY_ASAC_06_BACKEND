@@ -1,0 +1,98 @@
+package asac06.galaxy.common;
+
+
+import asac06.galaxy.exception.CustomException;
+import asac06.galaxy.exception.ExceptionType;
+import asac06.galaxy.repository.dto.BaseResponse;
+import asac06.galaxy.repository.dto.ResponseDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+@Slf4j
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    // 400 Bad Request 처리 (유효성 검사 실패)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ResponseDto<?>> handleValidationException(MethodArgumentNotValidException ex) {
+        log.error("Validation error: {}", ex.getMessage());
+
+        ResponseDto<?> errorResponse = new ResponseDto<>(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // 400 Bad Request 처리 (IllegalArgumentException 처리 추가)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ResponseDto<?>> handleIllegalArgumentException(IllegalArgumentException ex) {
+        log.error("Invalid argument error: {}", ex.getMessage());
+
+        ResponseDto<?> errorResponse = new ResponseDto<>(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // 404 Not Found 처리 (존재하지 않는 URL 경로 요청 시)
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<ResponseDto<?>> handleNoHandlerFoundException(NoHandlerFoundException ex) {
+        log.error("No handler found for request: {}", ex.getRequestURL());
+
+        ResponseDto<?> errorResponse = new ResponseDto<>(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // 405 Method Not Allowed 처리 (지원하지 않는 메서드)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ResponseDto<?>> handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
+        log.error("Method Not Allowed error: {}", ex.getMessage());
+
+        ResponseDto<?> errorResponse = new ResponseDto<>(
+                HttpStatus.METHOD_NOT_ALLOWED.value(),
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
+    // 500 Internal Server Error 처리 (서버 내부 오류)
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ResponseDto<?>> handleGlobalException(Exception ex) {
+        log.error("Internal server error: {}", ex.getMessage(), ex);
+
+        ResponseDto<?> errorResponse = new ResponseDto<>(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                ex.getMessage(),
+                null
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler
+    public BaseResponse<Void> handle(CustomException e) {
+        log.error("[ERROR] " + e.getMessage(), e);
+        ExceptionType type = e.getType();
+
+        return BaseResponse.failure(type);
+    }
+}

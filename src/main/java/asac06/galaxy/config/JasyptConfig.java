@@ -19,8 +19,6 @@ public class JasyptConfig {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
 
-        System.out.println("encryptor : " + encryptor);
-
         config.setPassword(encryptKey);
         config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
         config.setKeyObtentionIterations("1000");
@@ -30,8 +28,6 @@ public class JasyptConfig {
         config.setIvGeneratorClassName("org.jasypt.iv.RandomIvGenerator");
         config.setStringOutputType("base64");
         encryptor.setConfig(config);
-
-
 
         return encryptor;
     }

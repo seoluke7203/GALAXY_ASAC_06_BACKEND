@@ -2,6 +2,12 @@ spring:
   profiles:
     active: local
 
+  jwt:
+    secretkey: b969b1d7fee442d1c33479656f64460fd51e7c63ab59b0882b5d3e820cd04287
+
+
+
+
 #spring:
 #  profiles:
 #    active: dev

@@ -3,10 +3,12 @@ package asac06.galaxy;
 import asac06.galaxy.model.Product;
 import asac06.galaxy.model.ProductGenre;
 import asac06.galaxy.model.ProductType;
+import asac06.galaxy.model.User;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,7 @@ public class InitDb {
     @PostConstruct
     public void init() {
         initService.productInit();
+//        initService.userInit();
     }
 
     @Component
@@ -30,6 +33,16 @@ public class InitDb {
     static class InitService{
 
         private final EntityManager em;
+//        private final PasswordEncoder passwordEncoder;
+
+//        public void userInit() {
+//            User user = new User();
+//            user.setId(1L);
+//            user.setLoginId("test@gmail.com");
+//            user.setEmail("test@gmail.com");
+//            user.setPassword(passwordEncoder.encode("12345"));
+//            em.persist(user);
+//        }
 
 
         @RequiredArgsConstructor
@@ -44,8 +57,6 @@ public class InitDb {
         }
 
         public void productInit() {
-
-
             LocalDateTime today = LocalDateTime.now();
             today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss"));
 
