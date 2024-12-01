@@ -1,5 +1,6 @@
 package asac06.galaxy.controller;
 
+import asac06.galaxy.common.ApiResponse;
 import asac06.galaxy.model.ProductGenre;
 import asac06.galaxy.repository.dto.ProductDto;
 import asac06.galaxy.repository.dto.ProductDto.MainPosterProductDto;
@@ -28,29 +29,24 @@ public class ProductController {
 
     // main banner
     @GetMapping("/main/{genre}")
-    public ResponseEntity<ResponseDto<List<MainPosterProductDto>>> mainProducts(@PathVariable("genre") String genre) {
+    public ResponseEntity<ApiResponse<List<MainPosterProductDto>>> mainProducts(@PathVariable("genre") String genre) {
 
         // 추후 수정
         ProductGenre productGenre = ProductGenre.of(String.valueOf(genre));
 
         List<MainPosterProductDto> resultList =  productService.findMainProducts(productGenre);
         return ResponseEntity.status(HttpStatus.OK)
-                             .body(new ResponseDto<>(200, resultList));
+                             .body(new ApiResponse<>(200, null , resultList));
     }
 
     @GetMapping("/sub/{genre}")
-    public ResponseEntity<ResponseDto<List<SubPosterProductDto>>> subProducts(@PathVariable("genre") String genre) {
+    public ResponseEntity<ApiResponse<List<SubPosterProductDto>>> subProducts(@PathVariable("genre") String genre) {
 
         // 추후 수정
         ProductGenre productGenre = ProductGenre.of(String.valueOf(genre));
 
         List<SubPosterProductDto> resultList =  productService.findSubProducts(productGenre);
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new ResponseDto<>(200, resultList));
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "test";
+                .body(new ApiResponse<>(200, null, resultList));
     }
 }
