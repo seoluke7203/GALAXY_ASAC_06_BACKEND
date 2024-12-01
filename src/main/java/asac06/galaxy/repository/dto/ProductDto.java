@@ -62,6 +62,7 @@ public class ProductDto {
 
         private String posterSrc;
         private String posterDetail;
+        private ProductType productType;
 
         public ProductDetailDto(String title, LocalDateTime releaseDate, LocalDate startDate,
             LocalDate endDate, int runningTime, int price, String place, String posterSrc,
@@ -75,6 +76,7 @@ public class ProductDto {
             this.place = place;
             this.posterSrc = posterSrc;
             this.posterDetail = posterDetail;
+            this.productType = ProductType.SCHEDULE;
         }
     }
 }

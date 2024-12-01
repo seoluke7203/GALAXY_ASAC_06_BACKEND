@@ -20,10 +20,10 @@ public class GlobalExceptionHandler {
 
     // 400 Bad Request 처리 (유효성 검사 실패)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ResponseDto<?>> handleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException ex) {
         log.error("Validation error: {}", ex.getMessage());
 
-        ResponseDto<?> errorResponse = new ResponseDto<>(
+        ApiResponse<?> errorResponse = new ApiResponse<>(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
                 null
@@ -34,10 +34,10 @@ public class GlobalExceptionHandler {
 
     // 400 Bad Request 처리 (IllegalArgumentException 처리 추가)
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ResponseDto<?>> handleIllegalArgumentException(IllegalArgumentException ex) {
+    public ResponseEntity<ApiResponse<?>> handleIllegalArgumentException(IllegalArgumentException ex) {
         log.error("Invalid argument error: {}", ex.getMessage());
 
-        ResponseDto<?> errorResponse = new ResponseDto<>(
+        ApiResponse<?> errorResponse = new ApiResponse<>(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
                 null
@@ -48,10 +48,10 @@ public class GlobalExceptionHandler {
 
     // 404 Not Found 처리 (존재하지 않는 URL 경로 요청 시)
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<ResponseDto<?>> handleNoHandlerFoundException(NoHandlerFoundException ex) {
+    public ResponseEntity<ApiResponse<?>> handleNoHandlerFoundException(NoHandlerFoundException ex) {
         log.error("No handler found for request: {}", ex.getRequestURL());
 
-        ResponseDto<?> errorResponse = new ResponseDto<>(
+        ApiResponse<?> errorResponse = new ApiResponse<>(
                 HttpStatus.NOT_FOUND.value(),
                 ex.getMessage(),
                 null
@@ -62,10 +62,10 @@ public class GlobalExceptionHandler {
 
     // 405 Method Not Allowed 처리 (지원하지 않는 메서드)
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ResponseDto<?>> handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
+    public ResponseEntity<ApiResponse<?>> handleMethodNotAllowedException(HttpRequestMethodNotSupportedException ex) {
         log.error("Method Not Allowed error: {}", ex.getMessage());
 
-        ResponseDto<?> errorResponse = new ResponseDto<>(
+        ApiResponse<?> errorResponse = new ApiResponse<>(
                 HttpStatus.METHOD_NOT_ALLOWED.value(),
                 ex.getMessage(),
                 null
@@ -76,10 +76,10 @@ public class GlobalExceptionHandler {
 
     // 500 Internal Server Error 처리 (서버 내부 오류)
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseDto<?>> handleGlobalException(Exception ex) {
+    public ResponseEntity<ApiResponse<?>> handleGlobalException(Exception ex) {
         log.error("Internal server error: {}", ex.getMessage(), ex);
 
-        ResponseDto<?> errorResponse = new ResponseDto<>(
+        ApiResponse<?> errorResponse = new ApiResponse<>(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 ex.getMessage(),
                 null

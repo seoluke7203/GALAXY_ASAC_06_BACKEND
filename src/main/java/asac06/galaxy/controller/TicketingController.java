@@ -1,5 +1,6 @@
 package asac06.galaxy.controller;
 
+import asac06.galaxy.common.ApiResponse;
 import asac06.galaxy.model.Product;
 import asac06.galaxy.repository.dto.ProductDto.MainPosterProductDto;
 import asac06.galaxy.repository.dto.ProductDto.ProductDetailDto;
@@ -18,9 +19,8 @@ public class TicketingController {
     private final TicketingService ticketingService;
 
     @GetMapping("/ticketing/{id}")
-    public ResponseDto<ProductDetailDto> productDetailElements(@PathVariable("id") Long id) {
+    public ApiResponse<ProductDetailDto> productDetailElements(@PathVariable("id") Long id) {
 
-        return new ResponseDto<ProductDetailDto>(HttpStatus.OK.value(), ticketingService.findProductById(id));
+        return new ApiResponse<ProductDetailDto>(HttpStatus.OK.value(), null, ticketingService.findProductById(id));
     }
-
 }
