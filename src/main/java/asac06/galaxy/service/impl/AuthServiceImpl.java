@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
 
         String username = jwtProvider.getUsernameFromToken(refresh.getValue());
 
-        String newAccessToken = jwtProvider.generateToken("access", username, 600000L);
+        String newAccessToken = jwtProvider.generateToken("access", username, 6000L);
         String newRefreshToken = jwtProvider.generateToken("refresh", username, 86400000L);
 
 

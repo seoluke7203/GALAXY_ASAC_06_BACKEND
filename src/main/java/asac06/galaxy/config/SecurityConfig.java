@@ -55,7 +55,7 @@ public class SecurityConfig {
                                 ,"api/register"
                                 ,"/ticketing/{id}"
                                 ,"/login").permitAll()
-//                .requestMatchers("/reissue").permitAll()
+                .requestMatchers("/reissue").permitAll()
 //                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
         );

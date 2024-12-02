@@ -49,4 +49,11 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(200, null, resultList));
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<ApiResponse<List<ProductDto>>> test() {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .build();
+    }
 }

@@ -31,6 +31,7 @@ public class AuthController {
 //                refresh = cookie.getValue();
 //            }
 //        }
+        System.out.println("cookie :::::: " + refresh.getValue());
 
         Map<String, String> reissueTokensMap = authService.reissue(refresh);
 

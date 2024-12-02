@@ -35,24 +35,26 @@ public class JWTFilter extends OncePerRequestFilter {
             jwtProvider.isTokenExpired(accessToken);
         } catch (ExpiredJwtException e) {
             // 에러처리 필요
-            PrintWriter writer = response.getWriter();
-            writer.print("access token expired");
+//            PrintWriter writer = response.getWriter();
+//            writer.print("access token expired");
+//
+//            //response status code
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
-            //response status code
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            JwtExceptionResponseUtil.unAuthentication(response, JWTErrorType.EXPIRED_ACCESS_TOKEN);
             return;
         }
 
         String category = jwtProvider.getCategory(accessToken);
 
         if(!"access".equals(category)) {
-            // 에러 처리 필요
             //response body
-            PrintWriter writer = response.getWriter();
-            writer.print("invalid access token");
-
-            //response status code
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//            PrintWriter writer = response.getWriter();
+//            writer.print("invalid access token");
+//
+//            //response status code
+//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            JwtExceptionResponseUtil.unAuthentication(response, JWTErrorType.INVALID_TOKEN_ERROR);
         }
 
         String username = jwtProvider.getUsernameFromToken(accessToken);

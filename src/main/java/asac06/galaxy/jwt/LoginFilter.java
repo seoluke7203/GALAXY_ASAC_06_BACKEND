@@ -48,7 +48,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 //
 //        String role = auth.getAuthority();
 
-        String access = jwtProvider.generateToken("access", username, 600000L);
+        String access = jwtProvider.generateToken("access", username, 6000L);
         String refresh = jwtProvider.generateToken("refresh", username, 86400000L);
 
         // refresh token db 저장
