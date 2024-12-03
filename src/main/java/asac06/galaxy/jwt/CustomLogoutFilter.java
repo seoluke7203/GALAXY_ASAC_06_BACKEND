@@ -58,8 +58,7 @@ public class CustomLogoutFilter extends GenericFilterBean {
         }
         try{
             jwtProvider.isTokenExpired(refresh);
-        }
-        catch(ExpiredJwtException e){
+        }catch(ExpiredJwtException e){
             JwtExceptionResponseUtil.unAuthentication(response, JWTErrorType.INVALID_REFRESH_TOKEN);
             return;
         }
@@ -69,6 +68,7 @@ public class CustomLogoutFilter extends GenericFilterBean {
             JwtExceptionResponseUtil.unAuthentication(response, JWTErrorType.INVALID_REFRESH_TOKEN);
             return;
         }
+
         Boolean isExist = authRepository.existsByRefresh(refresh);
         if(!isExist){
             JwtExceptionResponseUtil.unAuthentication(response, JWTErrorType.INVALID_REFRESH_TOKEN);
